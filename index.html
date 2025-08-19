@@ -1,193 +1,176 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2113.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    span.s1 {font: 12.0px 'Apple Color Emoji'}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roulette San Sushi Clamart</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+  }
+
+  h1 {
+    color: #ff5656;
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  p.description {
+    color: #fff;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+
+  #wheel-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+  }
+
+  #wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid #ff5656;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px #ff5656;
+  }
+
+  .segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: #ff5656;
+    transform-origin: 100% 100%;
+    clip-path: polygon(100% 100%, 0% 100%, 100% 0%);
+  }
+
+  #pointer {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #ff5656;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  #spin {
+    margin-top: 40px;
+    padding: 15px 40px;
+    font-size: 18px;
+    background: #ff5656;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+  }
+
+  #spin:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+  }
+
+  #result {
+    margin-top: 25px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff5656;
+  }
+
+  p.note {
+    font-size: 0.9em;
+    margin-top: 20px;
+    color: #fff;
+  }
+
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="fr"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;Roulette San Sushi Clamart&lt;/title&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family: 'Arial', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #000;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>h1 {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 2em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>p.description {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 1.2em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#wheel-container {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 350px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 350px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#wheel {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: 10px solid #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow: 0 0 20px #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>.segment {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background-color: #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform-origin: 100% 100%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>clip-path: polygon(100% 100%, 0% 100%, 100% 0%);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#pointer {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>width: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>height: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-left: 20px solid transparent;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-right: 20px solid transparent;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-bottom: 40px solid #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>top: -40px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>left: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform: translateX(-50%);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>z-index: 10;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#spin {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding: 15px 40px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>background: #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius: 50px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow: 0 5px 10px rgba(0,0,0,0.3);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#spin:hover {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform: scale(1.05);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow: 0 8px 15px rgba(0,0,0,0.4);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>#result {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 25px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 1.5em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #ff5656;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>p.note {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size: 0.9em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>color: #fff;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;h1&gt;San Sushi Clamart <span class="s1">🍣</span>&lt;/h1&gt;</p>
-<p class="p1">&lt;p class="description"&gt;Tournez la roue et remportez votre récompense !&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div id="wheel-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="wheel"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="pointer"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;button id="spin"&gt;Tourner la roue <span class="s1">🎉</span>&lt;/button&gt;</p>
-<p class="p1">&lt;div id="result"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;p class="note"&gt;*sous réserve de nous montrer la preuve de votre avis Google&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const segments = [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{text: "Boisson <span class="s1">🥤</span>", color: "#ff5656"},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{text: "Bubble Tea <span class="s1">🧋</span>", color: "#000"},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{text: "Moelleux au chocolat <span class="s1">🍫</span>", color: "#ff5656"},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{text: "Tiramisu <span class="s1">🍮</span>", color: "#000"},</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{text: "Boisson <span class="s1">🥤</span>", color: "#ff5656"},</p>
-<p class="p1"><span class="Apple-converted-space">  </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const wheel = document.getElementById('wheel');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const spinButton = document.getElementById('spin');</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const resultDiv = document.getElementById('result');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Créer les segments</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const segmentCount = segments.length;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const angle = 360 / segmentCount;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>segments.forEach((segment, index) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const seg = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>seg.classList.add('segment');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>seg.style.backgroundColor = segment.color;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>seg.style.transform = `rotate(${index * angle}deg) skewY(-60deg)`;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const label = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.position = 'absolute';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.width = '100%';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.height = '100%';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.display = 'flex';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.alignItems = 'flex-start';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.justifyContent = 'center';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.transform = 'skewY(60deg) rotate(' + (angle/2) + 'deg)';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.fontWeight = 'bold';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.style.color = '#fff';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label.innerText = segment.text;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>seg.appendChild(label);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>wheel.appendChild(seg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// Vérifier cookie pour un seul tour</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (document.cookie.includes("roulettePlayed=true")) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>spinButton.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>resultDiv.innerText = "Vous avez déjà tourné la roulette !";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>spinButton.addEventListener("click", () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>spinButton.disabled = true;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const randDeg = Math.floor(Math.random() * 360);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>wheel.style.transition = "transform 5s ease-out";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>wheel.style.transform = `rotate(${randDeg + 1440}deg)`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const chosenIndex = Math.floor((360 - (randDeg % 360)) / angle) % segmentCount;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>resultDiv.innerText = `Félicitations ! Vous gagnez : ${segments[chosenIndex].text}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.cookie = "roulettePlayed=true; max-age=31536000; path=/";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}, 5000);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<h1>San Sushi Clamart 🍣</h1>
+<p class="description">Tournez la roue et remportez votre récompense !</p>
+
+<div id="wheel-container">
+  <div id="wheel"></div>
+  <div id="pointer"></div>
+</div>
+
+<button id="spin">Tourner la roue 🎉</button>
+<div id="result"></div>
+<p class="note">*sous réserve de nous montrer la preuve de votre avis Google</p>
+
+<script>
+  const segments = [
+    {text: "Boisson 🥤", color: "#ff5656"},
+    {text: "Bubble Tea 🧋", color: "#000"},
+    {text: "Moelleux au chocolat 🍫", color: "#ff5656"},
+    {text: "Tiramisu 🍮", color: "#000"},
+    {text: "Boisson 🥤", color: "#ff5656"},
+  ];
+
+  const wheel = document.getElementById('wheel');
+  const spinButton = document.getElementById('spin');
+  const resultDiv = document.getElementById('result');
+
+  // Créer les segments
+  const segmentCount = segments.length;
+  const angle = 360 / segmentCount;
+
+  segments.forEach((segment, index) => {
+    const seg = document.createElement('div');
+    seg.classList.add('segment');
+    seg.style.backgroundColor = segment.color;
+    seg.style.transform = `rotate(${index * angle}deg) skewY(-60deg)`;
+    
+    const label = document.createElement('div');
+    label.style.position = 'absolute';
+    label.style.width = '100%';
+    label.style.height = '100%';
+    label.style.display = 'flex';
+    label.style.alignItems = 'flex-start';
+    label.style.justifyContent = 'center';
+    label.style.transform = 'skewY(60deg) rotate(' + (angle/2) + 'deg)';
+    label.style.fontWeight = 'bold';
+    label.style.color = '#fff';
+    label.innerText = segment.text;
+
+    seg.appendChild(label);
+    wheel.appendChild(seg);
+  });
+
+  // Vérifier cookie pour un seul tour
+  if (document.cookie.includes("roulettePlayed=true")) {
+    spinButton.disabled = true;
+    resultDiv.innerText = "Vous avez déjà tourné la roulette !";
+  }
+
+  spinButton.addEventListener("click", () => {
+    spinButton.disabled = true;
+
+    const randDeg = Math.floor(Math.random() * 360);
+    wheel.style.transition = "transform 5s ease-out";
+    wheel.style.transform = `rotate(${randDeg + 1440}deg)`;
+
+    setTimeout(() => {
+      const chosenIndex = Math.floor((360 - (randDeg % 360)) / angle) % segmentCount;
+      resultDiv.innerText = `Félicitations ! Vous gagnez : ${segments[chosenIndex].text}`;
+
+      document.cookie = "roulettePlayed=true; max-age=31536000; path=/";
+    }, 5000);
+  });
+</script>
+
 </body>
 </html>
